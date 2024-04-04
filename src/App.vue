@@ -1,19 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <UserForm @add-user="addUser" />
+    <DataTable :users="users" @delete-user="deleteUser" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UserForm from "./components/UserForm.vue";
+import DataTable from "./components/DataTable.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    UserForm,
+    DataTable,
+  },
+  data() {
+    return {
+      users: [],
+    };
+  },
+  methods: {
+    addUser(user) {
+      if (this.users.some((item) => item.id === user.id)) {
+        return;
+      }
+      this.users.push(user);
+    },
+    deleteUser(user) {
+      this.users = this.users.filter((item) => item.id !== user.id);
+    },
+  },
+};
 </script>
 
 <style>
@@ -23,6 +41,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
