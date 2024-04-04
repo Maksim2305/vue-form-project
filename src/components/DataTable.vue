@@ -62,7 +62,7 @@
         </tr>
       </tbody>
     </table>
-    <div v-else>Пользовтелей пока нет</div>
+    <div v-else>Пользователей пока нет</div>
   </div>
 </template>
 
